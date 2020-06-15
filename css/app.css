@@ -1,0 +1,8 @@
+.todo-list li {
+	max-height: 100px;
+	overflow: hidden;
+	transition: max-height 300ms;
+}
+.todo-list li.cache {
+	max-height: 0;
+}
