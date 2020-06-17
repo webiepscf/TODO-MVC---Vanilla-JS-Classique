@@ -37,24 +37,49 @@ window.onload = function() {
 
     // Lancement des fonctions utiles
       displayNotCompleted();
+      activerCheckboxes();
 
   }
 
+/**
+ * [displayNotCompleted description]
+ * @return {[type]} [description]
+ */
   function displayNotCompleted () {
     todoCountElt.innerText = todoList.querySelectorAll('li:not(.completed)').length;
+  }
+
+  function toggleItem (item) {
+    // item correspond au <li>
+    item.classList.toggle('completed');
+    displayNotCompleted();
   }
 
 
 
 // CAPTURE DES EVENEMENTS
+
+// Lorsque l'on tape 'Enter' dans le champ de texte .new-todo
   newTodoInput.addEventListener('keyup', function(e){
     if (e.keyCode === 13) {
       addItem(this);
     }
   });
 
+// Lorsque l'on clique sur une checkbox .toggle
+  function activerCheckboxes() {
+    const toggleInputs = document.querySelectorAll('.toggle');
+    for (let toggleInput of toggleInputs) {
+      toggleInput.onclick = function() {
+        toggleItem(this.closest('li'));
+      }
+    }
+  }
+
+
 
 // LANCEMENT DE FONCTIONS AU CHARGEMENT DE LA PAGE
   displayNotCompleted();
+  activerCheckboxes();
 
 }
