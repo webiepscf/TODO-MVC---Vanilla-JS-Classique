@@ -13,7 +13,7 @@ AJOUT D'UNE TÂCHE
   6. Activer les fonctions à activer (voir ci-après)
 
 CHECK et DECHECK D'UNE TÂCHE
-  1. Créez une fonction toogleItem()qui fait un alert coucou
+  1. Créez une fonction toggleItem() qui fait un alert coucou
   2. Lancer cette fonction quand on clique sur un des checkbox
     (faire une fonction activerCheckboxes())
   3. Faites un toggle de la class completed quand on clique sur un checkbox
@@ -21,7 +21,7 @@ CHECK et DECHECK D'UNE TÂCHE
 
 MODIFICATION D'UNE TÂCHE
   1. Créez une fonction editItem() qui fait un alert coucou
-  2. Lancez cette fonctions quand quand on double-clique sur une tâche
+  2. Lancez cette fonction quand quand on double-clique sur une tâche
     (faites une fonction activerItems())
   3. Alert du texte
   4. Mettez un input avec comme valeur le texte

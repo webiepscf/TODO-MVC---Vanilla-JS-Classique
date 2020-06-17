@@ -38,6 +38,7 @@ window.onload = function() {
     // Lancement des fonctions utiles
       displayNotCompleted();
       activerCheckboxes();
+      activerItems();
 
   }
 
@@ -49,11 +50,36 @@ window.onload = function() {
     todoCountElt.innerText = todoList.querySelectorAll('li:not(.completed)').length;
   }
 
+/**
+ * [toggleItem description]
+ * @param  {[type]} item [description]
+ * @return {[type]}      [description]
+ */
   function toggleItem (item) {
     // item correspond au <li>
-    item.classList.toggle('completed');
-    displayNotCompleted();
+      item.classList.toggle('completed');
+      displayNotCompleted();
   }
+
+/**
+ * [editItem description]
+ * @param  {[type]} item [description]
+ * @return {[type]}      [description]
+ */
+  function editItem(item) {
+    // item correspond au <li>
+      const value = item.querySelector('label').innerText;
+      item.querySelector('label').innerHTML = `<input type="text" value="${value}" class="editInput" />`;
+      // Je mets le curseur dans le nouvel input
+      item.querySelector('label input').focus();
+      activerEditInputs();
+  }
+
+  function updateItem(item) {
+    // item correspond au <li>
+      item.querySelector('label').innerHTML = item.querySelector('label > input').value;
+  }
+
 
 
 
@@ -76,10 +102,35 @@ window.onload = function() {
     }
   }
 
+// Lorsque l'on double-clique sur un label qui est dans un .listItem:not(.completed)
+  function activerItems() {
+    const itemsNotCompleted = todoList.querySelectorAll('.listItem:not(.completed) label');
+    for (let itemNotCompleted of itemsNotCompleted) {
+      itemNotCompleted.ondblclick = function () {
+        editItem(this.closest('li'));
+      }
+    }
+  }
+
+// Lorsque je tape 'Enter' dans un input.editInput
+function activerEditInputs() {
+  const editInputs = document.querySelectorAll('.editInput');
+  for (let editInput of editInputs) {
+    editInput.onkeyup = function(e) {
+      if (e.keyCode === 13) {
+        updateItem(this.closest('li'));
+      }
+    }
+    editInput.onblur = function() {
+      updateItem(this.closest('li'));
+    }
+  }
+}
 
 
 // LANCEMENT DE FONCTIONS AU CHARGEMENT DE LA PAGE
   displayNotCompleted();
   activerCheckboxes();
+  activerItems();
 
 }
