@@ -2,11 +2,19 @@
 
 window.onload = function() {
 
+// ELEMENTS UTILES
   const newTodoInput = document.querySelector('.new-todo');
   const todoList = document.querySelector('.todo-list');
+  const todoCountElt = document.getElementById('todo-count');
+
 
 
 // FONCTIONS
+
+/**
+ * [addItem description]
+ * @param {[type]} elt [description]
+ */
   function addItem(elt) {
     // On crée le newLi
       const newLi = document.createElement('li');
@@ -27,7 +35,15 @@ window.onload = function() {
     // Vider le champ de texte
       elt.value = '';
 
+    // Lancement des fonctions utiles
+      displayNotCompleted();
+
   }
+
+  function displayNotCompleted () {
+    todoCountElt.innerText = todoList.querySelectorAll('li:not(.completed)').length;
+  }
+
 
 
 // CAPTURE DES EVENEMENTS
@@ -37,5 +53,8 @@ window.onload = function() {
     }
   });
 
+
+// LANCEMENT DE FONCTIONS AU CHARGEMENT DE LA PAGE
+  displayNotCompleted();
 
 }
