@@ -184,7 +184,14 @@ function activerEditInputs() {
   const filterBtns = document.querySelectorAll('.filter');
   for (let filterBtn of filterBtns) {
     filterBtn .onclick = function () {
-      filterItems(this);
+      // Je supprime le .selected aux .filter
+        filterBtns.forEach(function(filterLink) {
+          filterLink.classList.remove('selected');
+        });
+
+      // J'ajoute un .selected au .filter sur lequel je clique
+        this.classList.add('selected');
+        filterItems(this);
     }
   }
 
