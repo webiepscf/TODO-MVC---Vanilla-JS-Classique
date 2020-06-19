@@ -118,6 +118,13 @@ window.onload = function() {
     }
   }
 
+  function deleteAllCompleted() {
+    const itemsCompleted = document.querySelectorAll('.completed');
+    for (let itemCompleted of itemsCompleted) {
+      deleteItem(itemCompleted);
+    }
+  }
+
 
 // CAPTURE DES EVENEMENTS
 
@@ -179,6 +186,11 @@ function activerEditInputs() {
     filterBtn .onclick = function () {
       filterItems(this);
     }
+  }
+
+// Lorsque l'on clique sur le .clear-completed
+  document.querySelector('.clear-completed').onclick = function () {
+    deleteAllCompleted();
   }
 
 
