@@ -39,6 +39,7 @@ window.onload = function() {
       displayNotCompleted();
       activerCheckboxes();
       activerItems();
+      activerDeleteBtns();
 
   }
 
@@ -75,9 +76,23 @@ window.onload = function() {
       activerEditInputs();
   }
 
+/**
+ * [updateItem description]
+ * @param  {[type]} item [description]
+ * @return {[type]}      [description]
+ */
   function updateItem(item) {
     // item correspond au <li>
       item.querySelector('label').innerHTML = item.querySelector('label > input').value;
+  }
+
+  function deleteItem(item) {
+    // item correspond au <li>
+      item.classList.add('cache');
+      setTimeout(function() {
+        item.remove();
+        displayNotCompleted();
+      }, 300);
   }
 
 
@@ -127,10 +142,22 @@ function activerEditInputs() {
   }
 }
 
+// Lorsque l'on clique sur un bouton .destroy
+  function activerDeleteBtns() {
+    const deleteBtns = document.querySelectorAll('.destroy');
+    for (let deleteBtn of deleteBtns) {
+      deleteBtn.onclick = function() {
+        deleteItem(this.closest('li'));
+      }
+    }
+  }
+
+
 
 // LANCEMENT DE FONCTIONS AU CHARGEMENT DE LA PAGE
   displayNotCompleted();
   activerCheckboxes();
   activerItems();
+  activerDeleteBtns()
 
 }
