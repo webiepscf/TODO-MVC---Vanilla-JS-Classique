@@ -130,7 +130,7 @@ window.onload = function() {
 
 // Lorsque l'on tape 'Enter' dans le champ de texte .new-todo
   newTodoInput.addEventListener('keyup', function(e){
-    if (e.keyCode === 13) {
+    if (e.keyCode === 13 && this.value.length > 0) {
       addItem(this);
     }
   });
