@@ -86,6 +86,11 @@ window.onload = function() {
       item.querySelector('label').innerHTML = item.querySelector('label > input').value;
   }
 
+/**
+ * [deleteItem description]
+ * @param  {[type]} item [description]
+ * @return {[type]}      [description]
+ */
   function deleteItem(item) {
     // item correspond au <li>
       item.classList.add('cache');
@@ -95,7 +100,23 @@ window.onload = function() {
       }, 300);
   }
 
-
+/**
+ * [filterItems description]
+ * @param  {[type]} filterBtn [description]
+ * @return {[type]}           [description]
+ */
+  function filterItems(filterBtn) {
+    const filter = filterBtn.dataset.filter; // .all, .completed, :not(.completed)
+    const items = document.querySelectorAll('.listItem');
+    for (let item of items) {
+      if (item.matches(filter)) {
+        item.classList.remove('cache');
+      }
+      else {
+        item.classList.add('cache');
+      }
+    }
+  }
 
 
 // CAPTURE DES EVENEMENTS
@@ -151,6 +172,15 @@ function activerEditInputs() {
       }
     }
   }
+
+// Lorsque l'on clique sur un .filter
+  const filterBtns = document.querySelectorAll('.filter');
+  for (let filterBtn of filterBtns) {
+    filterBtn .onclick = function () {
+      filterItems(this);
+    }
+  }
+
 
 
 
